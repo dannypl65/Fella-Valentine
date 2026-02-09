@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Special Question ❤️</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #b11226, #ff5f6d);
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 0 30px rgba(177, 18, 38, 0.45);
+      animation: popIn 0.9s ease;
+      max-width: 90%;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #b11226;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 22px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    button {
+      padding: 14px 32px;
+      font-size: 18px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      margin: 18px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #yes {
+      background-color: #b11226;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+
+    #no {
+      background-color: #eee;
+      position: absolute;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.75); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(177,18,38,0.6); }
+      70% { box-shadow: 0 0 0 18px rgba(177,18,38,0); }
+      100% { box-shadow: 0 0 0 0 rgba(177,18,38,0); }
+    }
+
+    .heart,
+    .heart-bg {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-15vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Dear Mi Reina💍❤️</h1>
+    <p class="subtitle">I’ve been meaning to ask you something…</p>
+    <p style="font-size:22px;">Will you be my Valentine? 🌹</p>
+    <button id="yes" onclick="yesClicked()">Yes 💘</button>
+    <button id="no">No 😅</button>
+  </div>
+
+  <audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const noButton = document.getElementById("no");
+
+    noButton.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+    });
+
+    // background floating hearts
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart-bg";
+      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💘";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+      document.body.appendChild(heart);
+    }
+
+    function yesClicked() {
+      document.getElementById("music").play();
+
+      document.body.innerHTML = `
+        <div style="
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, #b11226, #ff5f6d);
+          font-family: 'Poppins', 'Segoe UI', sans-serif;
+          text-align: center;
+          animation: popIn 1s ease;
+          padding: 20px;
+        ">
+          <h1 style="color:white; font-size:42px;">
+            Happy said YES ❤️🥰
+          </h1>
+
+          <p style="font-size:20px; color:#ffecec; max-width:420px;">
+            I already knew you would… but I’m still smiling like crazy.
+          </p>
+
+          <p style="margin-top:22px; font-size:22px; color:white;">
+            Valentine’s Day just got better 🌹
+          </p>
+
+          <p style="margin-top:30px; font-size:16px; color:#ffd6d6;">
+            From Mi Rey💍❤️
+          </p>
+        </div>
+      `;
+
+      for (let i = 0; i < 35; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
+      }
+    }
+  </script>
+
+</body>
+</html>
